@@ -1,0 +1,75 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.applet.AudioClip;
+import java.applet.Applet;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+public class Pokeframe extends JFrame implements ActionListener{
+        JButton audio =  new JButton("Audio");
+        JButton next = new JButton("Next");
+
+        ImageIcon poke = new ImageIcon(getClass().getResource("pokedex.jpg"));
+        JLabel apa = new JLabel(poke);    
+        public Pokeframe() {
+         
+        
+        next.addActionListener(new ActionListener() {
+
+            
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "hello" );
+
+            }
+
+        });
+
+            setLayout(null);
+
+
+        audio.setBounds(20,20,30,30);
+        next.setBounds(280,440,40,30);
+        apa.setBounds(0,0,700,580);
+        add(next);
+        add(apa);
+        add(audio);
+        audio.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+	            play("bulbasaur");
+				
+			}
+
+			public void play(String nomeDoAudio) {
+				URL url = Pokeframe.class.getResource(nomeDoAudio+".mp3");
+	        	AudioClip audio = Applet.newAudioClip(url);
+	        	audio.play();
+				
+			}
+        	
+        });
+        
+
+
+        setTitle("Pokedex");
+        setSize(700,590);
+        setDefaultCloseOperation(Pokeframe.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+
+        }
+    public static void main(String[] arg) {
+        new Pokeframe();
+    }
+   
+    public void actionPerformed(ActionEvent e) {
+
+
+    }
+}
